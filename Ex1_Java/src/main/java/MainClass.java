@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class MainClass {
@@ -31,11 +32,13 @@ public class MainClass {
         };
 
 
-        stream
+        List<CatBreedEnum> catBreedEnums = (List<CatBreedEnum>) stream
                 .filter(p4)
                 .filter(p5)
                 .map(animal -> ((Cat)animal).getBreed())
-                .forEach(System.out::println);
+                .collect(Collectors.toList());
+
+        System.out.println(catBreedEnums);
 
     }
 }
