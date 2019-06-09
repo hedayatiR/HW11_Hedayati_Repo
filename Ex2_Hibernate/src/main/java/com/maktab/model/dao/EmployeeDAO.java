@@ -9,4 +9,5 @@ public interface EmployeeDAO extends BaseDAO<Employee> {
     double maxSalaryByCity(String city);
     Employee maxPaidEmployeeInCity(String city);
     List<Employee> empsWithPostalCode(String postalCode);
+    List<Employee> empsWithTelNumber(String telNumber);
 }

@@ -78,6 +78,9 @@ public class MainApp {
         // Query 3
         employeeDAO.empsWithPostalCode("123");
 
+        // Query 4
+        employeeDAO.empsWithTelNumber("3");
+
         factory.close();
     }
 }

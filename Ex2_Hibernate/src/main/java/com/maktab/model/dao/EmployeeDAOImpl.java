@@ -86,5 +86,30 @@ public class EmployeeDAOImpl extends BaseDaoImpl<Employee> implements EmployeeDA
         return employees;
     }
 
+    @Override
+    public List<Employee> empsWithTelNumber(String telNumber) {
+        Session session = factory.openSession();
+
+
+        List<Employee> employees = (List<Employee>) session.createQuery("select e from Employee e " +
+                "inner join e.addresses a " +
+                "inner join a.phoneNumbers p " +
+                "where p.telNumber=:telNumber")
+                .setParameter("telNumber", telNumber)
+                .getResultList();
+
+        session.close();
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("List of employees with telNumber " + telNumber + " :");
+        System.out.println(employees);
+        System.out.println();
+        System.out.println();
+
+        return employees;
+    }
+
 
 }
