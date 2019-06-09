@@ -1,9 +1,15 @@
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestClass {
 
@@ -23,7 +29,7 @@ public class TestClass {
     @DisplayName("Test of cat list creation")
     void testCreateCatList() {
 
-        Assertions.assertTrue(testCreateCatListHelperMethod(catList), "Cat creation Failed!");
+        assertTrue(testCreateCatListHelperMethod(catList), "Cat creation Failed!");
 
     }
 
@@ -49,7 +55,7 @@ public class TestClass {
     @Test
     @DisplayName("test filtering of cats with breed")
     void testFilteringCatsWithBreed() {
-        Assertions.assertTrue(testFilteringCatsWithBreedHelperMethod(),
+        assertTrue(testFilteringCatsWithBreedHelperMethod(),
                 "filtering of cats with breed Failed!"
         );
     }
@@ -69,7 +75,7 @@ public class TestClass {
     @Test
     @DisplayName("test filtering of cats with name")
     void testFilteringCatsWithName() {
-        Assertions.assertTrue(testFilteringCatsWithNameHelperMethod(),
+        assertTrue(testFilteringCatsWithNameHelperMethod(),
                 "filtering of cats with name Failed!"
         );
     }
@@ -83,6 +89,38 @@ public class TestClass {
                     return true;
                 });
         return match;
+    }
+
+    // Test 4
+    @Test
+    @DisplayName("test printing of cats' breed")
+    void testPrintingBreedTypes(){
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent));
+
+        Predicate p1 = animalManger.Q1Filter();
+        Predicate p2 = animalManger.Q2Filter();
+        List<CatBreedEnum> catBreedEnums = (List<CatBreedEnum>) catList.stream()
+                .filter(p1)
+                .filter(p2)
+                .map(animal -> ((Cat)animal).getBreed())
+                .collect(Collectors.toList());
+
+        animalManger.printBreedTypes(catBreedEnums);
+
+        String expectedOutput  = "Aegean\r\n" +
+                "American_Curl\r\n" +
+                "American_Wirehair\r\n" +
+                "Arabian_Mau\r\n" +
+                "Asian_Semilonghair\r\n" +
+                "Chantilly_Tiffany\r\n" +
+                "Chausie\r\n" +
+                "Colorpoint_Shorthair\r\n" +
+                "Cymric\r\n" +
+                "Persian_Modern\r\n" +
+                "Peterbald\r\n";
+
+        assertEquals(expectedOutput, outContent.toString());
     }
 
 }

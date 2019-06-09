@@ -23,6 +23,6 @@ public class MainClass {
                 .map(animal -> ((Cat)animal).getBreed())
                 .collect(Collectors.toList());
 
-        System.out.println(catBreedEnums);
+        animalManger.printBreedTypes(catBreedEnums);
     }
 }

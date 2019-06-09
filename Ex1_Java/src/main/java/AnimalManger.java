@@ -47,4 +47,13 @@ public class AnimalManger {
         return p2;
     }
 
+    //--------------------------------------------------------------
+
+    public void printBreedTypes(List<CatBreedEnum> catBreedEnumList){
+        for (CatBreedEnum catBreedEnum:
+             catBreedEnumList) {
+            System.out.println(catBreedEnum);
+        }
+    }
+
 }
