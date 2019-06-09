@@ -24,9 +24,17 @@ public class MainClass {
         Predicate p3 = animal -> ((Cat)animal).getBreed().toString().startsWith("P");
         Predicate p4 = p1.or(p2).or(p3);
 
+        // Q2.
+        Predicate<Animal> p5 = animal -> {
+            int a = Integer.parseInt(animal.getName().substring(3));
+            return a%2 ==0;
+        };
 
-        stream.filter(p4)
-                .forEach(e -> System.out.println(((Cat)e).getBreed()) );
+
+        stream
+                .filter(p4)
+                .filter(p5)
+                .forEach(e -> System.out.println(((Cat)e).getName()) );
 
     }
 }
