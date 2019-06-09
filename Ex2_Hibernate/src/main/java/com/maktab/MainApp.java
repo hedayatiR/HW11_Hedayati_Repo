@@ -66,6 +66,12 @@ public class MainApp {
         employeeDAO.create(employee2);
         employeeDAO.create(employee3);
 
+        //-----------------------------------------------------------
+
+        // queries
+        employeeDAO.maxSalaryByCity("Tehran");
+
+
         factory.close();
     }
 }
