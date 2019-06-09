@@ -65,5 +65,26 @@ public class EmployeeDAOImpl extends BaseDaoImpl<Employee> implements EmployeeDA
         return employee;
     }
 
+    @Override
+    public List<Employee> empsWithPostalCode(String postalCode) {
+        Session session = factory.openSession();
+
+
+        List<Employee> employees = (List<Employee>) session.createQuery("select e from Employee e inner join e.addresses a where " +
+                "a.postalCode=:postalCode").setParameter("postalCode", postalCode).getResultList();
+
+        session.close();
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("List of employees with postal code " + postalCode + " :");
+        System.out.println(employees);
+        System.out.println();
+        System.out.println();
+
+        return employees;
+    }
+
 
 }

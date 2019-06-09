@@ -75,7 +75,8 @@ public class MainApp {
         // Query 2
         employeeDAO.maxPaidEmployeeInCity("Tehran");
 
-
+        // Query 3
+        employeeDAO.empsWithPostalCode("123");
 
         factory.close();
     }
