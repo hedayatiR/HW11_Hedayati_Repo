@@ -40,4 +40,30 @@ public class EmployeeDAOImpl extends BaseDaoImpl<Employee> implements EmployeeDA
         return maxSalary;
     }
 
+    @Override
+    public Employee maxPaidEmployeeInCity(String city) {
+
+        Session session = factory.openSession();
+
+
+        Employee employee = (Employee) session.createQuery("select e from Employee e inner join e.addresses a where " +
+                "a.city=?1 order by e.salary DESC")
+                .setParameter(1, city)
+                .setMaxResults(1)
+                .getSingleResult();
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println("Max salary of " + city + " city is for:");
+        System.out.println(employee);
+        System.out.println();
+        System.out.println();
+
+        session.close();
+
+        return employee;
+    }
+
+
 }

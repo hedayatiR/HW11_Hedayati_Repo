@@ -68,8 +68,13 @@ public class MainApp {
 
         //-----------------------------------------------------------
 
-        // queries
+        // Queries
+        // Query 1
         employeeDAO.maxSalaryByCity("Tehran");
+
+        // Query 2
+        employeeDAO.maxPaidEmployeeInCity("Tehran");
+
 
 
         factory.close();

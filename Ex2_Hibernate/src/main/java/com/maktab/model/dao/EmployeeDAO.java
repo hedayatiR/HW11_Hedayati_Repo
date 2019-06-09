@@ -5,4 +5,5 @@ import com.maktab.model.Employee;
 
 public interface EmployeeDAO extends BaseDAO<Employee> {
     double maxSalaryByCity(String city);
+    Employee maxPaidEmployeeInCity(String city);
 }
