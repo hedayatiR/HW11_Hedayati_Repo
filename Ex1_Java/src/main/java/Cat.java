@@ -1,11 +1,15 @@
 public class Cat extends Animal {
-    private String breed;
+    private CatBreedEnum breed;
 
-    public String getBreed() {
+    public Cat(String name) {
+        super(name);
+    }
+
+    public CatBreedEnum getBreed() {
         return breed;
     }
 
-    public void setBreed(String breed) {
+    public void setBreed(CatBreedEnum breed) {
         this.breed = breed;
     }
 }
