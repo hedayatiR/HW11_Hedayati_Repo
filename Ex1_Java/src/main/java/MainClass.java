@@ -34,7 +34,8 @@ public class MainClass {
         stream
                 .filter(p4)
                 .filter(p5)
-                .forEach(e -> System.out.println(((Cat)e).getName()) );
+                .map(animal -> ((Cat)animal).getBreed())
+                .forEach(System.out::println);
 
     }
 }
