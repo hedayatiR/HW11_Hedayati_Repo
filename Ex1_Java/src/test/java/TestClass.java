@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -20,9 +22,22 @@ public class TestClass {
     @BeforeAll
     static void createCatList() {
         animalManger = new AnimalManger();
-        catList = animalManger.createCatList();
-    }
+        Class managerClass = animalManger.getClass();
 
+        try {
+            Method createCatsMethod = managerClass.getDeclaredMethod("createCatList");
+            createCatsMethod.setAccessible(true);
+            catList = (List<Animal>) createCatsMethod.invoke(animalManger);
+            createCatsMethod.setAccessible(false);
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     // Test 1
     @Test

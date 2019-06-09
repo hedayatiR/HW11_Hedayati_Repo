@@ -4,7 +4,7 @@ import java.util.function.Predicate;
 
 public class AnimalManger {
 
-    public List<Animal> createCatList(){
+    private List<Animal> createCatList(){
         List<Animal> animalList = new ArrayList<>();
         int i = 1;
         for (CatBreedEnum catBreedEnum : CatBreedEnum.values()) {
