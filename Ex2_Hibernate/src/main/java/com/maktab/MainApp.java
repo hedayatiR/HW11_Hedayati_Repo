@@ -1,8 +1,10 @@
 package com.maktab;
 
+import com.maktab.core.dao.BaseDAO;
 import com.maktab.model.Address;
 import com.maktab.model.Employee;
 import com.maktab.model.PhoneNumber;
+import com.maktab.model.dao.AddressDaoImpl;
 import com.maktab.model.dao.EmployeeDAO;
 import com.maktab.model.dao.EmployeeDAOImpl;
 import org.hibernate.SessionFactory;
@@ -67,8 +69,8 @@ public class MainApp {
         employeeDAO.create(employee3);
 
         //-----------------------------------------------------------
-
         // Queries
+
         // Query 1
         employeeDAO.maxSalaryByCity("Tehran");
 
@@ -80,6 +82,16 @@ public class MainApp {
 
         // Query 4
         employeeDAO.empsWithTelNumber("3");
+
+        //-----------------------------------------------------------
+        // test of deletion
+
+        // deletion of employee
+        employeeDAO.deleteObj(employee1);
+
+        // deletion of address
+        BaseDAO addressDAO = new AddressDaoImpl(factory);
+        addressDAO.deleteObj(address5);
 
         factory.close();
     }
